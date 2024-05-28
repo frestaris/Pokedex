@@ -4,26 +4,58 @@ body {
   overflow-x: hidden;
 }
 
-.card-body {
-  color: white;
-}
 .card {
+  width: 400px;
+  height: 500px;
   border-radius: 20px;
-  border: 10px solid white;
+  border: 5px yellow outset;
+  box-shadow: 3px 3px 10px #000;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-header h5,
+.card-header p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.card-header p {
+  color: red;
+  font-size: 1rem;
+  font-weight: 800;
 }
 
+.card-img-top {
+  background-color: rgb(61, 61, 61);
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  border: 5px yellow outset;
+  box-shadow: 3px 3px 10px #000;
+  margin: auto;
+}
 .card-title {
   font-family: "Pokemon Solid", sans-serif;
-  font-size: 2.5rem;
-  text-decoration: underline;
+  font-size: 1.5rem;
+  color: white;
 }
+.card-title-right {
+  display: flex;
+  gap: 1rem;
+}
+
 .type-icon {
   width: 30px;
   height: 30px;
 }
 .card-text {
-  border-bottom: black;
-  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+
   font-size: 1.3rem;
 }
 .pagination-container {

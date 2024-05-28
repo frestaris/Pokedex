@@ -3,7 +3,7 @@ import grassIcon from "../src/assets/icons/grass.svg";
 import steelIcon from "../src/assets/icons/steel.svg";
 import waterIcon from "../src/assets/icons/water.svg";
 import psychicIcon from "../src/assets/icons/psychic.svg";
-import groundIcon from "../src/assets/icons/rock.svg";
+import groundIcon from "../src/assets/icons/ground.png";
 import iceIcon from "../src/assets/icons/ice.svg";
 import flyingIcon from "../src/assets/icons/flying.svg";
 import ghostIcon from "../src/assets/icons/ghost.svg";
@@ -16,8 +16,8 @@ import bugIcon from "../src/assets/icons/bug.svg";
 import dragonIcon from "../src/assets/icons/dragon.svg";
 import electricIcon from "../src/assets/icons/electric.svg";
 import fairyIcon from "../src/assets/icons/fairy.svg";
-import unknownIcon from "../src/assets/icons/unknown.svg";
-import shadowIcon from "../src/assets/icons/shadow.svg";
+import unknownIcon from "../src/assets/icons/unknown.png";
+import shadowIcon from "../src/assets/icons/shadow.png";
 
 const typeIcons = {
   fire: fireIcon,
@@ -42,6 +42,29 @@ const typeIcons = {
   shadow: shadowIcon,
 };
 
+const typeDescriptions = {
+  fire: "Fire type description",
+  grass: "Grass type description",
+  steel: "Steel type description",
+  water: "Water type description",
+  psychic: "Psychic type description",
+  ground: "Ground type description",
+  ice: "Ice type description",
+  flying: "Flying type description",
+  ghost: "Ghost type description",
+  normal: "Normal type description",
+  poison: "Poison type description",
+  rock: "Rock type description",
+  fighting: "Fighting type description",
+  dark: "Dark type description",
+  bug: "Bug type description",
+  dragon: "Dragon type description",
+  electric: "Electric type description",
+  fairy: "Fairy type description",
+  unknown: "Unknown type description",
+  shadow: "Shadow type description",
+};
+
 const typeColors = {
   fire: "#ff7402",
   grass: "#33a165",
@@ -64,4 +87,5 @@ const typeColors = {
   unknown: "#757575",
   shadow: "#29292c",
 };
-export { typeIcons, typeColors };
+
+export { typeIcons, typeDescriptions, typeColors };

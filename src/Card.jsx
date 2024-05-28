@@ -93,6 +93,10 @@ const Card = () => {
       <div id="pokemon-container" className="row justify-content-center gap-5">
         {pokemonData.map((pokemon) => {
           const type = pokemon.types[0].type.name;
+          const hp = pokemon.stats.find(
+            (stat) => stat.stat.name === "hp"
+          ).base_stat;
+
           return (
             <div
               key={`pokemon-card-${pokemon.id}`}
@@ -103,22 +107,43 @@ const Card = () => {
                 backgroundColor: typeColors[type],
               }}
             >
+              <div className="card-header">
+                <h5>{`#${pokemon.id} ${
+                  pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+                }`}</h5>
+                <div className="card-title-right">
+                  <p>
+                    <img
+                      src={typeIcons[type]}
+                      alt={type}
+                      className="type-icon"
+                    />
+                  </p>
+                  <p>{hp} HP</p>
+                </div>
+              </div>
+
               <img
                 src={pokemon.sprites.other["official-artwork"].front_default}
                 className="card-img-top mt-2"
                 alt={pokemon.name}
               />
               <div className="card-body">
-                <h5 className="card-title mb-5">{`#${pokemon.id} ${
-                  pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
-                }`}</h5>
-                <p className="card-text">
+                <div className="card-text">
                   <strong>Type:</strong>{" "}
                   {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-                  <img src={typeIcons[type]} alt={type} className="type-icon" />
-                </p>
-                <p className="card-text">
-                  <strong>Abilities:</strong>{" "}
+                </div>
+
+                <div className="card-text">
+                  <strong>Weight:</strong> {pokemon.weight} Kg
+                </div>
+                <div className="card-text">
+                  <strong>Height:</strong> {pokemon.height} M
+                </div>
+                <div className="card-text">
+                  <strong>Abilities: </strong>
+                </div>
+                <div className="card-text">
                   {pokemon.abilities
                     .map(
                       (ability) =>
@@ -126,13 +151,7 @@ const Card = () => {
                         ability.ability.name.slice(1)
                     )
                     .join(", ")}
-                </p>
-                <p className="card-text">
-                  <strong>Weight:</strong> {pokemon.weight} Kg
-                </p>
-                <p className="card-text">
-                  <strong>Height:</strong> {pokemon.height} M
-                </p>
+                </div>
               </div>
             </div>
           );

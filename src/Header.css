@@ -1,18 +1,24 @@
-.container {
+.header {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  margin: 0 auto;
+  width: 50%;
 }
 
 .header img {
-  max-width: 100%;
+  width: 100%;
 }
 
 .searchbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.search {
   position: relative;
   width: 70%;
-  margin: 0 auto;
-  margin-bottom: 2rem;
 }
 
 .search-input {
@@ -35,4 +41,51 @@
 }
 .pokeball-icon:hover {
   transform: translateY(-50%) scale(1.4);
+}
+
+/* DROPDOWN */
+
+.dropbtn {
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 1rem;
+  color: white;
+  font-size: 3rem;
+}
+.grid-icon {
+  width: 30px;
+  height: 30px;
+}
+.grid-icon:hover {
+  transform: scale(1.4);
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  width: 100px;
+  z-index: 10;
+  display: none;
+  right: calc(120%);
+  bottom: calc(90%);
+}
+
+.dropdown-content a {
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.show {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
