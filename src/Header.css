@@ -8,6 +8,7 @@
 
 .header img {
   width: 100%;
+  cursor: pointer;
 }
 
 .searchbar-container {
@@ -41,6 +42,17 @@
 }
 .pokeball-icon:hover {
   transform: translateY(-50%) scale(1.4);
+}
+
+.btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: none;
+  font-size: 2rem;
+}
+.btn:hover {
+  transform: scale(1.5);
 }
 
 /* DROPDOWN */
@@ -88,4 +100,14 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
+}
+
+@media (max-width: 600px) {
+  .dropdown-content {
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    right: calc(200%);
+    top: calc(90%);
+  }
 }

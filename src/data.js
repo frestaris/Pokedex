@@ -42,29 +42,6 @@ const typeIcons = {
   shadow: shadowIcon,
 };
 
-const typeDescriptions = {
-  fire: "Fire type description",
-  grass: "Grass type description",
-  steel: "Steel type description",
-  water: "Water type description",
-  psychic: "Psychic type description",
-  ground: "Ground type description",
-  ice: "Ice type description",
-  flying: "Flying type description",
-  ghost: "Ghost type description",
-  normal: "Normal type description",
-  poison: "Poison type description",
-  rock: "Rock type description",
-  fighting: "Fighting type description",
-  dark: "Dark type description",
-  bug: "Bug type description",
-  dragon: "Dragon type description",
-  electric: "Electric type description",
-  fairy: "Fairy type description",
-  unknown: "Unknown type description",
-  shadow: "Shadow type description",
-};
-
 const typeColors = {
   fire: "#ff7402",
   grass: "#33a165",
@@ -88,4 +65,4 @@ const typeColors = {
   shadow: "#29292c",
 };
 
-export { typeIcons, typeDescriptions, typeColors };
+export { typeIcons, typeColors };

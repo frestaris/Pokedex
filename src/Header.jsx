@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import header_icon from "./assets/icons/Header-red.png";
 import pokeball from "./assets/icons/pokeball.png";
 import "./Header.css";
-import { typeIcons, typeDescriptions } from "./data";
+import { typeIcons } from "./data";
 
-const Header = () => {
+const Header = ({ setSelectedType }) => {
   const [searchInput, setSearchInput] = useState("");
+  const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -24,12 +25,7 @@ const Header = () => {
         );
         if (!response.ok) throw new Error("Pokémon not found");
         const data = await response.json();
-        const page = Math.ceil(data.id / 12);
-        navigate(`/page/${page}`);
-        //  only works with double click -_-' needs research
-        // Scroll to the Pokemon card
         const cardId = data.id;
-        console.log("Card ID:", cardId);
         const cardElement = document.getElementById(`pokemon-card-${cardId}`);
         if (cardElement) {
           cardElement.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -39,14 +35,52 @@ const Header = () => {
       }
     }
   };
+
+  const handleClick = () => {
+    window.location.reload();
+  };
+
+  const handleTypeIconClick = (type) => {
+    setSelectedType(type);
+    setDropdownVisible(false);
+  };
+
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div>
       <div className="header">
-        <img src={header_icon} alt="" className="header-image" />
+        <img
+          src={header_icon}
+          alt=""
+          className="header-image"
+          onClick={handleClick}
+        />
       </div>
       <div className="searchbar-container">
         <div className="search">
@@ -75,136 +109,21 @@ const Header = () => {
             id="myDropdown"
             className={`dropdown-content ${dropdownVisible ? "show" : ""}`}
           >
-            <a href="#">
-              <img className="grid-icon" src={typeIcons.fire} alt="fire Icon" />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.grass}
-                alt="grass Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.steel}
-                alt="steel Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.water}
-                alt="water Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.psychic}
-                alt="psychic Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.ground}
-                alt="ground Icon"
-              />
-            </a>
-            <a href="#">
-              <img className="grid-icon" src={typeIcons.ice} alt="ice Icon" />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.flying}
-                alt="flying Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.ghost}
-                alt="ghost Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.normal}
-                alt="normal Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.poison}
-                alt="poison Icon"
-              />
-            </a>
-            <a href="#">
-              <img className="grid-icon" src={typeIcons.rock} alt="rock Icon" />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.fighting}
-                alt="fighting Icon"
-              />
-            </a>
-            <a href="#">
-              <img className="grid-icon" src={typeIcons.dark} alt="dark Icon" />
-            </a>
-            <a href="#">
-              <img className="grid-icon" src={typeIcons.bug} alt="bug Icon" />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.dragon}
-                alt="dragon Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.electric}
-                alt="electric Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.fairy}
-                alt="fairy Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.unknown}
-                alt="unknown Icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                className="grid-icon"
-                src={typeIcons.shadow}
-                alt="shadow Icon"
-              />
-            </a>
+            {Object.entries(typeIcons).map(([type, icon]) => (
+              <a href="#" key={type} onClick={() => handleTypeIconClick(type)}>
+                <img className="grid-icon" src={icon} alt={`${type} Icon`} />
+              </a>
+            ))}
           </div>
         </div>
       </div>
+      {showButton && (
+        <button className="btn" onClick={scrollToTop} title="Go to top">
+          <i class="bi bi-arrow-up-short"></i>
+        </button>
+      )}
     </div>
   );
 };
 
 export default Header;
-// {Object.entries(typeIcons).map(([type, icon]) => (
-//   <a href="#" key={type}>
-//     <img className="grid-icon" src={icon} alt={`${type} Icon`} />
-//   </a>
-// ))}
